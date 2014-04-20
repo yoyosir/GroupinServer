@@ -70,7 +70,8 @@ public class SearchGroupServlet extends HttpServlet {
 					JSONObject object = new JSONObject();
 					object.put("groupname", group.getName());
 					object.put("founder", user.getUsername());
-					object.put("dis", "" + d);
+					object.put("latitude", "" + group.getLatitude());
+					object.put("longitude", "" + group.getLongitude());
 					jsonArray.put(object);
 				}
 				resp.getWriter().write(jsonArray.toString());

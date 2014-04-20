@@ -18,6 +18,16 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/groupin/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>removeAllGroupsServlet</servlet-name>
     <servlet-class>com.cs8803mas.groupin.server.RemoveAllGroupsServlet</servlet-class>
   </servlet>

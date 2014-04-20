@@ -22,7 +22,6 @@ public class CreateUserServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		resp.getWriter().write("response");
 		resp.setHeader("Content-Type", "application/json");
 		StringBuilder sb = new StringBuilder();
 		String s = null;
@@ -31,10 +30,6 @@ public class CreateUserServlet extends HttpServlet {
 		while ((s = br.readLine()) != null) {
 			sb.append(s);
 		}
-
-		resp.getWriter().write(
-				"[user count:" + USER_JDODAO.listUser().size() + "]");
-		//resp.getWriter().write(sb.toString());
 
 		try {
 			JSONObject jsonObject = new JSONObject(sb.toString());
@@ -45,7 +40,8 @@ public class CreateUserServlet extends HttpServlet {
 					jsonObject.getString("password"), jsonObject
 							.getString("nickname"));
 			int success = USER_JDODAO.addUser(user);
-			resp.getWriter().write("success" + success);
+			if (success == 0) resp.getWriter().write("success");
+			else resp.getWriter().write("username exists");
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

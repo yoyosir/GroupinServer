@@ -19,16 +19,12 @@ public class UserJDODAO implements UserDAO {
 	public int addUser(User user) {
 		PersistenceManager pm = getPersistenceManagerFactory()
 				.getPersistenceManager();
-		try {
-			String userName = user.getUsername();
-			if (!isExistUser(userName)) {
-				pm.makePersistent(user);
-				return 0;
-			}
-			else return 1;
-		} finally {
-			return 2;
-		}
+		String userName = user.getUsername();
+		if (!isExistUser(userName)) {
+			pm.makePersistent(user);
+			return 0;
+		} else
+			return 1;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -87,8 +83,8 @@ public class UserJDODAO implements UserDAO {
 	public User getUserById(Long id) {
 		PersistenceManager pm = getPersistenceManagerFactory()
 				.getPersistenceManager();
-		String query = "select from " + User.class.getName()
-				+ " where id == " + id;
+		String query = "select from " + User.class.getName() + " where id == "
+				+ id;
 		@SuppressWarnings("unchecked")
 		List<User> users = (List<User>) pm.newQuery(query).execute();
 		if (users.isEmpty())
