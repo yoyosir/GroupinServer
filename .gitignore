@@ -12,5 +12,6 @@ auth.py
 dist
 target
 WEB-INF/appengine-generated
+war/WEB-INF/deploy
 gwt-unitCache
 *cache*
