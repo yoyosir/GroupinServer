@@ -13,3 +13,4 @@ dist
 target
 WEB-INF/appengine-generated
 gwt-unitCache
+*cache*
