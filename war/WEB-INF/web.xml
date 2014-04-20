@@ -38,12 +38,12 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>uploadServlet</servlet-name>
-    <servlet-class>com.cs8803mas.groupin.server.UploadServlet</servlet-class>
+    <servlet-name>uploadImageServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.UploadImageServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>uploadServlet</servlet-name>
+    <servlet-name>uploadImageServlet</servlet-name>
     <url-pattern>/groupin/upload</url-pattern>
   </servlet-mapping>
   

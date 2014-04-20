@@ -16,6 +16,9 @@ import com.cs8803mas.groupin.datastore.GroupJDODAO;
 import com.cs8803mas.groupin.datastore.Message;
 import com.cs8803mas.groupin.datastore.MessageDAO;
 import com.cs8803mas.groupin.datastore.MessageJDODAO;
+import com.cs8803mas.groupin.datastore.SharedImage;
+import com.cs8803mas.groupin.datastore.SharedImageDAO;
+import com.cs8803mas.groupin.datastore.SharedImageJDODAO;
 import com.cs8803mas.groupin.datastore.User;
 import com.cs8803mas.groupin.datastore.UserDAO;
 import com.cs8803mas.groupin.datastore.UserJDODAO;
@@ -23,12 +26,15 @@ import com.google.appengine.labs.repackaged.org.json.JSONArray;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
 
+import org.apache.commons.codec.binary.Base64;
+
 @SuppressWarnings("serial")
 public class RetrieveMessageServlet extends HttpServlet {
 
 	private static final UserDAO USER_JDODAO = new UserJDODAO();
 	private static final GroupDAO GROUP_DAO = new GroupJDODAO();
 	private static final MessageDAO MESSAGE_DAO = new MessageJDODAO();
+	private static final SharedImageDAO SHARED_IMAGE_DAO = new SharedImageJDODAO();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -54,6 +60,7 @@ public class RetrieveMessageServlet extends HttpServlet {
 				Group group;
 				if ((group = GROUP_DAO.verifyGroup(groupName, passcode)) != null) {
 					List<Message> messages = MESSAGE_DAO.getMessagesForGroup(group.getId());
+					List<SharedImage> images = SHARED_IMAGE_DAO.getImagesByGroup(group.getId());
 					JSONArray jsonArray = new JSONArray();
 					for (Message message : messages) {
 						User user = USER_JDODAO.getUserById(message.getUid());
@@ -61,6 +68,17 @@ public class RetrieveMessageServlet extends HttpServlet {
 						object.put("username", user.getUsername());
 						object.put("content", message.getContent());
 						object.put("time", message.getTime());
+						object.put("type", "text");
+						jsonArray.put(object);
+					}
+					for (SharedImage image : images) {
+						User user = USER_JDODAO.getUserById(image.getUid());
+						JSONObject object = new JSONObject();
+						object.put("username", user.getUsername());
+						
+						object.put("content", Base64.encodeBase64String(image.getBlob().getBytes()));
+						object.put("time", image.getTime());
+						object.put("type", "image");
 						jsonArray.put(object);
 					}
 					resp.getWriter().write(jsonArray.toString());

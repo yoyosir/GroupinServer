@@ -76,11 +76,7 @@ public class GroupJDODAO implements GroupDAO {
 				+ " where name == '" + groupName + "'";
 		@SuppressWarnings("unchecked")
 		List<Group> groups = (List<Group>) pm.newQuery(query).execute();
-		if (groups.isEmpty()) {
-			return false;
-		} else {
-			return true;
-		}
+		return !groups.isEmpty();
 	}
 
 	@SuppressWarnings("unchecked")

@@ -20,10 +20,8 @@ public class SharedImage implements Serializable {
 	@Persistent
 	private Long gid;
 	@Persistent
-	private String name;
-	@Persistent
 	private Long uid;
-	@Persistent
+	@Persistent(serialized = "true")
 	private Blob blob;
 	@Persistent
 	private Long time;
@@ -32,11 +30,10 @@ public class SharedImage implements Serializable {
 
 	}
 
-	public SharedImage(Long gid, Long uid, String name, byte[] bytes) {
+	public SharedImage(Long gid, Long uid, byte[] bytes) {
 		super();
 		this.gid = gid;
 		this.uid = uid;
-		this.name = name;
 		this.blob = new Blob(bytes);
 		time = System.currentTimeMillis();
 	}
@@ -51,14 +48,6 @@ public class SharedImage implements Serializable {
 
 	public void setGid(Long gid) {
 		this.gid = gid;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Long getUid() {

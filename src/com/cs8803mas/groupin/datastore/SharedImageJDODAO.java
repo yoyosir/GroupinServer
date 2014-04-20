@@ -30,8 +30,12 @@ public class SharedImageJDODAO implements SharedImageDAO {
 	public boolean createImage(SharedImage image) {
 		PersistenceManager pm = getPersistenceManagerFactory()
 				.getPersistenceManager();
-		pm.makePersistent(image);
-		return true;
+		try {
+			pm.makePersistent(image);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
 	}
 
 
