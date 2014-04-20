@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <!-- Servlets -->
+  
+  <servlet>
+    <servlet-name>createUserServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.CreateUserServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>createUserServlet</servlet-name>
+    <url-pattern>/groupin/createuser</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>removeAllGroupsServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.RemoveAllGroupsServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>removeAllGroupsServlet</servlet-name>
+    <url-pattern>/groupin/removeallgroups</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>uploadAvatarServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.UploadAvatarServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>uploadAvatarServlet</servlet-name>
+    <url-pattern>/groupin/uploadavatar</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>uploadServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.UploadServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>uploadServlet</servlet-name>
+    <url-pattern>/groupin/upload</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>getAvatarServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.GetAvatarServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>getAvatarServlet</servlet-name>
+    <url-pattern>/groupin/getavatar</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>retrieveMessageServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.RetrieveMessageServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>retrieveMessageServlet</servlet-name>
+    <url-pattern>/groupin/retrievemessage</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>sendMessageServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.SendMessageServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>sendMessageServlet</servlet-name>
+    <url-pattern>/groupin/sendmessage</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>joinGroupServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.JoinGroupServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>joinGroupServlet</servlet-name>
+    <url-pattern>/groupin/joingroup</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>myGroupServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.MyGroupServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>myGroupServlet</servlet-name>
+    <url-pattern>/groupin/mygroup</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>createGroupServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.CreateGroupServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>createGroupServlet</servlet-name>
+    <url-pattern>/groupin/creategroup</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>searchGroupServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.SearchGroupServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>searchGroupServlet</servlet-name>
+    <url-pattern>/groupin/searchgroup</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>greetServlet</servlet-name>
+    <servlet-class>com.cs8803mas.groupin.server.GreetingServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>greetServlet</servlet-name>
+    <url-pattern>/groupin/greet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>GroupIn.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
