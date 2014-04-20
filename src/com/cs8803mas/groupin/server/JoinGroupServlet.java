@@ -31,7 +31,6 @@ public class JoinGroupServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		resp.getWriter().write("response");
 		resp.setHeader("Content-Type", "application/json");
 		StringBuilder sb = new StringBuilder();
 		String s = null;
@@ -54,7 +53,7 @@ public class JoinGroupServlet extends HttpServlet {
 				
 				Group group;
 				if ((group = GROUP_DAO.verifyGroup(groupName, passcode)) != null) {
-					if (!PAIR_DAO.pairExists(group.getId(), user.getId()))
+					if (!PAIR_DAO.pairExists(group.getId(), user.getId())) 
 						PAIR_DAO.createPair(group.getId(), user.getId());
 					else resp.getWriter().write("exist!");
 				} else {
