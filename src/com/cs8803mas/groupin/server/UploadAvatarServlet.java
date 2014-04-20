@@ -4,10 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.List;
-import java.util.Map;
 
-import javax.jdo.PersistenceManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -24,9 +21,6 @@ import com.cs8803mas.groupin.datastore.AvatarDAO;
 import com.cs8803mas.groupin.datastore.AvatarJDODAO;
 import com.cs8803mas.groupin.datastore.UserDAO;
 import com.cs8803mas.groupin.datastore.UserJDODAO;
-import com.google.appengine.api.blobstore.BlobKey;
-import com.google.appengine.api.blobstore.BlobstoreService;
-import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 
 @WebServlet("/upload")
 @MultipartConfig
@@ -42,7 +36,6 @@ public class UploadAvatarServlet extends HttpServlet {
 		try {
 			ServletFileUpload upload = new ServletFileUpload();
 			resp.setContentType("text/plain");
-			resp.getWriter().write("hi");
 
 			FileItemIterator iterator = upload.getItemIterator(req);
 			String username = null;
@@ -73,7 +66,6 @@ public class UploadAvatarServlet extends HttpServlet {
 					System.arraycopy(bytes, 0, store, 0, length);
 					Long id = USER_DAO.getUserByName(username).getId();
 					Avatar avatar = new Avatar(id, store);
-					//resp.getOutputStream().write(store);
 					if (AVATAR_DAO.saveAvatar(avatar)) resp.getWriter().write("success");
 					else resp.getWriter().write("fail writing to DB");
 					

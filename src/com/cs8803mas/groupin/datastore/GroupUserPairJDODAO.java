@@ -50,7 +50,7 @@ public class GroupUserPairJDODAO implements GroupUserPairDAO {
 		@SuppressWarnings("unchecked")
 		List<GroupUserPair> pairs = (List<GroupUserPair>) pm.newQuery(query)
 				.execute();
-		return pairs.isEmpty();
+		return !pairs.isEmpty();
 	}
 
 	@Override

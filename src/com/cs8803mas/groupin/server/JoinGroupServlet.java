@@ -54,9 +54,9 @@ public class JoinGroupServlet extends HttpServlet {
 				
 				Group group;
 				if ((group = GROUP_DAO.verifyGroup(groupName, passcode)) != null) {
-					PAIR_DAO.createPair(group.getId(), user.getId());
-					if (PAIR_DAO.pairExists(group.getId(), user.getId()))
-						resp.getWriter().write("success");
+					if (!PAIR_DAO.pairExists(group.getId(), user.getId()))
+						PAIR_DAO.createPair(group.getId(), user.getId());
+					else resp.getWriter().write("exist!");
 				} else {
 					resp.getWriter().write("invalid passcode");
 				}
@@ -66,5 +66,6 @@ public class JoinGroupServlet extends HttpServlet {
 			resp.getWriter().write("denied");
 			e.printStackTrace();
 		}
+		resp.getWriter().flush();
 	}
 }

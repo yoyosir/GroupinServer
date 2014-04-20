@@ -21,16 +21,22 @@ public class Group implements Serializable {
 	private Long guuid;
 	@Persistent
 	private String passcode;
+	@Persistent
+	private Double coordinateX;
+	@Persistent
+	private Double coordinateY;
 
 	public Group() {
 
 	}
 
-	public Group(String name, Long guuid, String passcode) {
+	public Group(String name, Long guuid, String passcode, Double coordinateX, Double coordinateY) {
 		super();
 		this.name = name;
 		this.guuid = guuid;
 		this.passcode = passcode;
+		this.coordinateX = coordinateX;
+		this.coordinateY = coordinateY;
 	}
 
 	public Long getId() {
@@ -63,6 +69,24 @@ public class Group implements Serializable {
 
 	public void setPasscode(String passcode) {
 		this.passcode = passcode;
+	}
+
+	public Double getCoordinateX() {
+		if (coordinateX == null) coordinateX = 0.0;
+		return coordinateX;
+	}
+
+	public void setCoordinateX(Double coordinateX) {
+		this.coordinateX = coordinateX;
+	}
+
+	public Double getCoordinateY() {
+		if (coordinateY == null) coordinateY = 0.0;
+		return coordinateY;
+	}
+
+	public void setCoordinateY(Double coordinateY) {
+		this.coordinateY = coordinateY;
 	}
 
 }

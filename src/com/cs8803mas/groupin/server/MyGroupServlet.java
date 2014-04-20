@@ -34,7 +34,6 @@ public class MyGroupServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		resp.getWriter().write("response");
 		resp.setHeader("Content-Type", "application/json");
 		StringBuilder sb = new StringBuilder();
 		String s = null;
@@ -53,13 +52,8 @@ public class MyGroupServlet extends HttpServlet {
 				resp.getWriter().write("denied");
 			} else {
 				List<GroupUserPair> pairList = PAIR_DAO.getAllPairs();
+				
 				List<Group> groupList = new ArrayList<Group>();
-				if (pairList == null) {
-					resp.getWriter().write("null");
-				} else {
-					resp.getWriter().write(pairList.size());
-				}
-				resp.getWriter().flush();
 
 				for (GroupUserPair pair : pairList) {
 					groupList.add(GROUP_DAO.getGroupById(pair.getGid()));
@@ -74,10 +68,12 @@ public class MyGroupServlet extends HttpServlet {
 					jsonArray.put(object);
 				}
 				resp.getWriter().write(jsonArray.toString());
-
+				
 			}
 		} catch (JSONException e) {
 			resp.getWriter().write("denied");
+			resp.getWriter().flush();
 		}
+		resp.getWriter().flush();
 	}
 }
