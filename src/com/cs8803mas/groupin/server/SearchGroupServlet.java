@@ -47,8 +47,8 @@ public class SearchGroupServlet extends HttpServlet {
 			JSONObject jsonObject = new JSONObject(sb.toString());
 			String username = jsonObject.getString("username");
 			String password = jsonObject.getString("password");
-			double coordinateX = Double.parseDouble(jsonObject.getString("coordinatex"));
-			double coordinateY = Double.parseDouble(jsonObject.getString("coordinatey"));
+			double latitude = Double.parseDouble(jsonObject.getString("latitude"));
+			double longitude = Double.parseDouble(jsonObject.getString("longitude"));
 			if (USER_JDODAO.verifyUser(username, password) == null) {
 				resp.getWriter().write("denied");
 			} else {
@@ -57,10 +57,10 @@ public class SearchGroupServlet extends HttpServlet {
 				//resp.getWriter().write("" + groupList.size());
 				for (Group group : groupList) {
 					double R = 6371;
-					double dLat = rad(coordinateX - group.getCoordinateX());
-					double dLon = rad(coordinateY - group.getCoordinateY());
-					double lat2 = rad(coordinateX);
-					double lat1 = rad(group.getCoordinateX());
+					double dLat = rad(latitude - group.getLatitude());
+					double dLon = rad(longitude - group.getLongitude());
+					double lat2 = rad(latitude);
+					double lat1 = rad(group.getLatitude());
 					double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
 					        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
 					double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));

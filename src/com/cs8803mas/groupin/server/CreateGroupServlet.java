@@ -46,15 +46,15 @@ public class CreateGroupServlet extends HttpServlet {
 			String password = jsonObject.getString("password");
 			String groupName = jsonObject.getString("groupname");
 			String passcode = jsonObject.getString("passcode");
-			String coordinateX = jsonObject.getString("coordinatex");
-			String coordinateY = jsonObject.getString("coordinatey");
+			String latitude = jsonObject.getString("latitude");
+			String longitude = jsonObject.getString("longitude");
 			User user;
 			if ((user = USER_JDODAO.verifyUser(username, password)) == null) {
 				resp.getWriter().write("denied");
 			} else {
 				Group group = new Group(groupName, user.getId(), passcode,
-						Double.parseDouble(coordinateX),
-						Double.parseDouble(coordinateY));
+						Double.parseDouble(latitude),
+						Double.parseDouble(longitude));
 				if (GROUP_DAO.createGroup(group)) {
 					PAIR_DAO.createPair(group.getId(), user.getId());
 					resp.getWriter().write("success");

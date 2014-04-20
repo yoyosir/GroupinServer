@@ -22,21 +22,21 @@ public class Group implements Serializable {
 	@Persistent
 	private String passcode;
 	@Persistent
-	private Double coordinateX;
+	private Double latitude;
 	@Persistent
-	private Double coordinateY;
+	private Double longitude;
 
 	public Group() {
 
 	}
 
-	public Group(String name, Long guuid, String passcode, Double coordinateX, Double coordinateY) {
+	public Group(String name, Long guuid, String passcode, Double latitude, Double longitude) {
 		super();
 		this.name = name;
 		this.guuid = guuid;
 		this.passcode = passcode;
-		this.coordinateX = coordinateX;
-		this.coordinateY = coordinateY;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	public Long getId() {
@@ -71,22 +71,22 @@ public class Group implements Serializable {
 		this.passcode = passcode;
 	}
 
-	public Double getCoordinateX() {
-		if (coordinateX == null) coordinateX = 0.0;
-		return coordinateX;
+	public Double getLatitude() {
+		if (latitude == null) latitude = 0.0;
+		return latitude;
 	}
 
-	public void setCoordinateX(Double coordinateX) {
-		this.coordinateX = coordinateX;
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
 	}
 
-	public Double getCoordinateY() {
-		if (coordinateY == null) coordinateY = 0.0;
-		return coordinateY;
+	public Double getLongitude() {
+		if (longitude == null) longitude = 0.0;
+		return longitude;
 	}
 
-	public void setCoordinateY(Double coordinateY) {
-		this.coordinateY = coordinateY;
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 }

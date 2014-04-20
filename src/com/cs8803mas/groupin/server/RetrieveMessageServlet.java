@@ -75,7 +75,6 @@ public class RetrieveMessageServlet extends HttpServlet {
 						User user = USER_JDODAO.getUserById(image.getUid());
 						JSONObject object = new JSONObject();
 						object.put("username", user.getUsername());
-						
 						object.put("content", Base64.encodeBase64String(image.getBlob().getBytes()));
 						object.put("time", image.getTime());
 						object.put("type", "image");
