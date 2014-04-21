@@ -16,9 +16,6 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.cs8803mas.groupin.datastore.Avatar;
-import com.cs8803mas.groupin.datastore.AvatarDAO;
-import com.cs8803mas.groupin.datastore.AvatarJDODAO;
 import com.cs8803mas.groupin.datastore.GroupDAO;
 import com.cs8803mas.groupin.datastore.GroupJDODAO;
 import com.cs8803mas.groupin.datastore.SharedImage;

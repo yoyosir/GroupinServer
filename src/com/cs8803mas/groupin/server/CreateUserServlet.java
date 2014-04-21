@@ -47,9 +47,6 @@ public class CreateUserServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		resp.getWriter().write(
-				"[user count:" + USER_JDODAO.listUser().size() + "]");
 		resp.getWriter().flush();
 	}
 }

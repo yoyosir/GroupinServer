@@ -54,9 +54,11 @@ public class MyGroupServlet extends HttpServlet {
 				List<GroupUserPair> pairList = PAIR_DAO.getAllPairs();
 				
 				List<Group> groupList = new ArrayList<Group>();
+				user = USER_JDODAO.getUserByName(username);
 
 				for (GroupUserPair pair : pairList) {
-					groupList.add(GROUP_DAO.getGroupById(pair.getGid()));
+					if (pair.getUid() == user.getId())
+						groupList.add(GROUP_DAO.getGroupById(pair.getGid()));
 				}
 				JSONArray jsonArray = new JSONArray();
 				for (Group group : groupList) {
