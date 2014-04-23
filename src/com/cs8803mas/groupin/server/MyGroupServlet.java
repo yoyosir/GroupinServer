@@ -51,14 +51,14 @@ public class MyGroupServlet extends HttpServlet {
 			if ((user = USER_JDODAO.verifyUser(username, password)) == null) {
 				resp.getWriter().write("denied");
 			} else {
-				List<GroupUserPair> pairList = PAIR_DAO.getAllPairs();
-				
-				List<Group> groupList = new ArrayList<Group>();
 				user = USER_JDODAO.getUserByName(username);
+				List<GroupUserPair> pairList = PAIR_DAO.getGroupsFromUser(user
+						.getId());
+
+				List<Group> groupList = new ArrayList<Group>();
 
 				for (GroupUserPair pair : pairList) {
-					if (pair.getUid() == user.getId())
-						groupList.add(GROUP_DAO.getGroupById(pair.getGid()));
+					groupList.add(GROUP_DAO.getGroupById(pair.getGid()));
 				}
 				JSONArray jsonArray = new JSONArray();
 				for (Group group : groupList) {
@@ -70,7 +70,7 @@ public class MyGroupServlet extends HttpServlet {
 					jsonArray.put(object);
 				}
 				resp.getWriter().write(jsonArray.toString());
-				
+
 			}
 		} catch (JSONException e) {
 			resp.getWriter().write("denied");

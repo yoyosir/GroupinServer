@@ -33,9 +33,6 @@ public class CreateUserServlet extends HttpServlet {
 
 		try {
 			JSONObject jsonObject = new JSONObject(sb.toString());
-			resp.getWriter().write(jsonObject.getString("username") + "\n");
-			resp.getWriter().write(jsonObject.getString("password") + "\n");
-			resp.getWriter().write(jsonObject.getString("nickname") + "\n");
 			User user = new User(jsonObject.getString("username"),
 					jsonObject.getString("password"), jsonObject
 							.getString("nickname"));
@@ -44,7 +41,6 @@ public class CreateUserServlet extends HttpServlet {
 			else resp.getWriter().write("username exists");
 			
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		resp.getWriter().flush();
